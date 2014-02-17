@@ -23,14 +23,18 @@ class YTBmessagewidget extends WP_Widget {
         $messagemargin = apply_filters( 'widget_messagemargin', $instance['wdmessagemargin'] );
         $messagestyle = apply_filters( 'widget_messagestyle', $instance['wdmessagestyle'] );
         ?>
-        <?php echo '<div class="widget" style="background-color:' . esc_attr($messagebackgroundcolor) .'; color:' . esc_attr($messagecolor) .'; padding:' . esc_attr($messagepadding) .'; margin:' . esc_attr($messagemargin) .'; ' . esc_attr($messagestyle) .'">'.esc_html($messagebody). '</div>'; ?>
+        <?php echo '<div class="widget" style="background-color:' . esc_attr($messagebackgroundcolor) .'; color:' . esc_attr($messagecolor) .'; padding:' . esc_attr($messagepadding) .'; margin:' . esc_attr($messagemargin) .'; ' . esc_attr($messagestyle) .'">'.$messagebody. '</div>'; ?>
         <?php
     }
 
     function update($new_instance, $old_instance) {
         $instance = $old_instance;
         $instance = $new_instance;
-        $instance['wdmessagebody'] = stripslashes($new_instance['wdmessagebody']);
+        if ( current_user_can('unfiltered_html') )
+            $instance['wdmessagebody'] =  $new_instance['wdmessagebody'];
+        else
+            $instance['wdmessagebody'] = stripslashes( wp_filter_post_kses( addslashes($new_instance['wdmessagebody']) ) ); // wp_filter_post_kses() expects slashed
+        endif
         $instance['wdmessagecolor'] = trim($new_instance['wdmessagecolor']);
         $instance['wdmessagebackgroundcolor'] = trim($new_instance['wdmessagebackgroundcolor']);
         $instance['wdmessagepadding'] = trim($new_instance['wdmessagepadding']);
