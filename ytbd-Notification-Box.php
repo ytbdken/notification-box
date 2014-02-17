@@ -13,7 +13,17 @@ License: GPL
 class YTBmessagewidget extends WP_Widget {
     function YTBmessagewidget() {
         parent::WP_Widget(false, $name = 'メッセージボックス' );
+        add_action( 'sidebar_admin_setup', array( $this, 'admin_setup' ) );
     }
+
+	/**
+	 * Enqueue javascripts.
+	 */
+	function admin_setup() {
+		wp_enqueue_script( 'wp-color-picker' );
+		wp_enqueue_style( 'wp-color-picker' );
+	}
+	
     function widget($args, $instance) {
         extract( $args );
         $messagebody = apply_filters( 'widget_messagebody', $instance['wdmessagebody'] );
@@ -51,7 +61,7 @@ class YTBmessagewidget extends WP_Widget {
         $instance = wp_parse_args( (array) $instance, $defaults ); ?>
 
         <?php _e('<div style="margin:20px 0; background-color:#f4f3e4; padding:10px; ">'); ?>
-        <?php echo '<div class="widget" style="background-color:' . $messagebackgroundcolor .'; color:' . $messagecolor .'; padding:' . $messagepadding .'; margin:' . $messagemargin .'; ' . $messagestyle .'">メッセージはこのように表示されます。</div>'; ?>
+        <?php echo '<div class="widget ytbd-widget-preview" style="background-color:' . $messagebackgroundcolor .'; color:' . $messagecolor .'; padding:' . $messagepadding .'; margin:' . $messagemargin .'; ' . $messagestyle .'">メッセージはこのように表示されます。</div>'; ?>
 
         <p>
            <label for="<?php echo $this->get_field_id('wdmessagebody'); ?>">
@@ -64,7 +74,7 @@ class YTBmessagewidget extends WP_Widget {
            <label for="<?php echo $this->get_field_id('wdmessagebackgroundcolor'); ?>">
              <?php _e('<strong>背景色</strong>'); ?>
            </label>
-           <input class="widefat" type="text" id="<?php echo $this->get_field_id('wdmessagebackgroundcolor'); ?>" name="<?php echo $this->get_field_name('wdmessagebackgroundcolor'); ?>"  value="<?php echo ($messagebackgroundcolor); ?>" ></input>
+           <input class="widefat ytbd-color-picker" type="text" id="<?php echo $this->get_field_id('wdmessagebackgroundcolor'); ?>" name="<?php echo $this->get_field_name('wdmessagebackgroundcolor'); ?>"  value="<?php echo ($messagebackgroundcolor); ?>" ></input>
            <?php _e('<span style="font-size:10px;">例：#f00 （赤い背景） black (黒い背景）</span>'); ?>
         </p>
 
@@ -72,7 +82,7 @@ class YTBmessagewidget extends WP_Widget {
            <label for="<?php echo $this->get_field_id('wdmessagecolor'); ?>">
              <?php _e('<strong">文字色</strong>'); ?>
            </label>
-           <input class="widefat" type="text" id="<?php echo $this->get_field_id('wdmessagecolor'); ?>" name="<?php echo $this->get_field_name('wdmessagecolor'); ?>"  value="<?php echo ($messagecolor); ?>" ></input>
+           <input class="widefat ytbd-color-picker" type="text" id="<?php echo $this->get_field_id('wdmessagecolor'); ?>" name="<?php echo $this->get_field_name('wdmessagecolor'); ?>"  value="<?php echo ($messagecolor); ?>" ></input>
             <?php _e('<span style="font-size:10px;">例：#fff （白い文字） black (黒い文字）</span>'); ?>
         </p>
 
@@ -100,7 +110,20 @@ class YTBmessagewidget extends WP_Widget {
            <?php _e('<span style="font-size:10px;">例：border:#f00 1px dotted; （赤い点線で囲う） border-radius:10px; (10pxの角丸にする）<br />　　font-size:3em; （文字を大きくする）</span>'); ?>
         </p>
         <?php _e('</div>'); ?>
-
+<script type="text/javascript">
+jQuery(document).ready(function($){
+	$('#<?php echo $this->get_field_id('wdmessagebackgroundcolor'); ?>').wpColorPicker({
+		change: function(event, ui){
+			$('.ytbd-widget-preview').css('background-color',ui.color.toString());
+		}
+	});
+	$('#<?php echo $this->get_field_id('wdmessagecolor'); ?>').wpColorPicker({
+		change: function(event, ui){
+			$('.ytbd-widget-preview').css('color',ui.color.toString());
+		}
+	});
+});
+</script>
         <?php
     }
 }
