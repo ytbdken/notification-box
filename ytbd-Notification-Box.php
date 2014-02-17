@@ -8,23 +8,22 @@ Author: kenji goto
 Author URI: http://yotsuba-d.com
 License: GPL
 */
-?>
-<?php
+
 class YTBmessagewidget extends WP_Widget {
-    function YTBmessagewidget() {
-        parent::WP_Widget(false, $name = 'メッセージボックス' );
+    public function __construct() {
+        parent::__construct(false, 'メッセージボックス');
         add_action( 'sidebar_admin_setup', array( $this, 'admin_setup' ) );
     }
 
-	/**
-	 * Enqueue javascripts.
-	 */
-	function admin_setup() {
-		wp_enqueue_script( 'wp-color-picker' );
-		wp_enqueue_style( 'wp-color-picker' );
-	}
-	
-    function widget($args, $instance) {
+    /**
+     * Enqueue javascripts.
+     */
+    public function admin_setup() {
+        wp_enqueue_script( 'wp-color-picker' );
+        wp_enqueue_style( 'wp-color-picker' );
+    }
+
+    public function widget($args, $instance) {
         extract( $args );
         $messagebody = apply_filters( 'widget_messagebody', $instance['wdmessagebody'] );
         $messagecolor = apply_filters( 'widget_messagecolor', $instance['wdmessagecolor'] );
@@ -32,12 +31,10 @@ class YTBmessagewidget extends WP_Widget {
         $messagepadding = apply_filters( 'widget_messagepadding', $instance['wdmessagepadding'] );
         $messagemargin = apply_filters( 'widget_messagemargin', $instance['wdmessagemargin'] );
         $messagestyle = apply_filters( 'widget_messagestyle', $instance['wdmessagestyle'] );
-        ?>
-        <?php echo '<div class="widget" style="background-color:' . esc_attr($messagebackgroundcolor) .'; color:' . esc_attr($messagecolor) .'; padding:' . esc_attr($messagepadding) .'; margin:' . esc_attr($messagemargin) .'; ' . esc_attr($messagestyle) .'">'.$messagebody. '</div>'; ?>
-        <?php
+        echo '<div class="widget" style="background-color:' . esc_attr($messagebackgroundcolor) .'; color:' . esc_attr($messagecolor) .'; padding:' . esc_attr($messagepadding) .'; margin:' . esc_attr($messagemargin) .'; ' . esc_attr($messagestyle) .'">'.$messagebody. '</div>';
     }
 
-    function update($new_instance, $old_instance) {
+    public function update($new_instance, $old_instance) {
         $instance = $old_instance;
         $instance = $new_instance;
         if ( current_user_can('unfiltered_html') )
@@ -49,20 +46,29 @@ class YTBmessagewidget extends WP_Widget {
         $instance['wdmessagepadding'] = trim($new_instance['wdmessagepadding']);
         $instance['wdmessagemargin'] = trim($new_instance['wdmessagemargin']);
         $instance['wdmessagestyle'] = trim($new_instance['wdmessagestyle']);
-            return $instance;
-        }
-    function form($instance) {
+        return $instance;
+    }
+
+    public function form($instance) {
+        $defaults = array(
+            'wdmessagebody' => '',
+            'wdmessagecolor' => '',
+            'wdmessagebackgroundcolor' => '',
+            'wdmessagepadding' => '',
+            'wdmessagemargin' => '',
+            'wdmessagestyle' => '',
+        );
+        $instance = wp_parse_args( (array) $instance, $defaults );
         $messagebody =  esc_textarea($instance['wdmessagebody']);
         $messagecolor =  esc_attr($instance['wdmessagecolor']);
         $messagebackgroundcolor =  esc_attr($instance['wdmessagebackgroundcolor']);
         $messagepadding =  esc_attr($instance['wdmessagepadding']);
         $messagemargin =  esc_attr($instance['wdmessagemargin']);
         $messagestyle =  esc_attr($instance['wdmessagestyle']);
-        $instance = wp_parse_args( (array) $instance, $defaults ); ?>
 
-        <?php _e('<div style="margin:20px 0; background-color:#f4f3e4; padding:10px; ">'); ?>
-        <?php echo '<div class="widget ytbd-widget-preview" style="background-color:' . $messagebackgroundcolor .'; color:' . $messagecolor .'; padding:' . $messagepadding .'; margin:' . $messagemargin .'; ' . $messagestyle .'">メッセージはこのように表示されます。</div>'; ?>
-
+        _e('<div style="margin:20px 0; background-color:#f4f3e4; padding:10px; ">');
+        echo '<div class="widget ytbd-widget-preview" style="background-color:' . $messagebackgroundcolor .'; color:' . $messagecolor .'; padding:' . $messagepadding .'; margin:' . $messagemargin .'; ' . $messagestyle .'">メッセージはこのように表示されます。</div>';
+?>
         <p>
            <label for="<?php echo $this->get_field_id('wdmessagebody'); ?>">
              <?php _e('<strong>メッセージ</strong>'); ?>
@@ -128,4 +134,3 @@ jQuery(document).ready(function($){
     }
 }
 add_action('widgets_init', create_function('', 'return register_widget("YTBmessagewidget");'));
-?>
