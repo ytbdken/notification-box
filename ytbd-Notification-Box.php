@@ -31,9 +31,7 @@ class YTBmessagewidget extends WP_Widget {
         $messagepadding = apply_filters( 'widget_messagepadding', $instance['wdmessagepadding'] );
         $messagemargin = apply_filters( 'widget_messagemargin', $instance['wdmessagemargin'] );
         $messagestyle = apply_filters( 'widget_messagestyle', $instance['wdmessagestyle'] );
-        ?>
-        <?php echo '<div class="widget" style="background-color:' . esc_attr($messagebackgroundcolor) .'; color:' . esc_attr($messagecolor) .'; padding:' . esc_attr($messagepadding) .'; margin:' . esc_attr($messagemargin) .'; ' . esc_attr($messagestyle) .'">'.$messagebody. '</div>'; ?>
-        <?php
+        echo '<div class="widget" style="background-color:' . esc_attr($messagebackgroundcolor) .'; color:' . esc_attr($messagecolor) .'; padding:' . esc_attr($messagepadding) .'; margin:' . esc_attr($messagemargin) .'; ' . esc_attr($messagestyle) .'">'.$messagebody. '</div>';
     }
 
     function update($new_instance, $old_instance) {
