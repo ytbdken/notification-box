@@ -66,7 +66,7 @@ class YTBmessagewidget extends WP_Widget {
         $messagemargin =  esc_attr($instance['wdmessagemargin']);
         $messagestyle =  esc_attr($instance['wdmessagestyle']);
 
-        _e('<div style="margin:20px 0; background-color:#f4f3e4; padding:10px; ">');
+        _e('<div style="margin:20px 0; background-color:#f4f3e4; padding:10px; ">一度保存すると色選択が可能になります。');
 ?>
         <p>
            <label for="<?php echo $this->get_field_id('wdmessagebody'); ?>">
