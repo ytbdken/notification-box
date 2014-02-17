@@ -31,6 +31,7 @@ class YTBmessagewidget extends WP_Widget {
         $messagepadding = apply_filters( 'widget_messagepadding', $instance['wdmessagepadding'] );
         $messagemargin = apply_filters( 'widget_messagemargin', $instance['wdmessagemargin'] );
         $messagestyle = apply_filters( 'widget_messagestyle', $instance['wdmessagestyle'] );
+        echo '<div class="widget" style="background-color:' . esc_attr($messagebackgroundcolor) .'; color:' . esc_attr($messagecolor) .'; padding:' . esc_attr($messagepadding) .'; margin:' . esc_attr($messagemargin) .'; ' . esc_attr($messagestyle) .'">'.$messagebody. '</div>';
     }
 
     public function update($new_instance, $old_instance) {
@@ -66,7 +67,6 @@ class YTBmessagewidget extends WP_Widget {
         $messagestyle =  esc_attr($instance['wdmessagestyle']);
 
         _e('<div style="margin:20px 0; background-color:#f4f3e4; padding:10px; ">');
-        echo '<div class="widget ytbd-widget-preview" style="background-color:' . $messagebackgroundcolor .'; color:' . $messagecolor .'; padding:' . $messagepadding .'; margin:' . $messagemargin .'; ' . $messagestyle .'">一度保存すると色選択が可能になります。</div>';
 ?>
         <p>
            <label for="<?php echo $this->get_field_id('wdmessagebody'); ?>">
