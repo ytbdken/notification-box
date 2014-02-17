@@ -52,9 +52,9 @@ class YTBmessagewidget extends WP_Widget {
     public function form($instance) {
         $defaults = array(
             'wdmessagebody' => '',
-            'wdmessagecolor' => '#fff',
-            'wdmessagebackgroundcolor' => '#66AD00',
-            'wdmessagepadding' => '15px',
+            'wdmessagecolor' => '',
+            'wdmessagebackgroundcolor' => '',
+            'wdmessagepadding' => '',
             'wdmessagemargin' => '',
             'wdmessagestyle' => '',
         );
@@ -67,7 +67,7 @@ class YTBmessagewidget extends WP_Widget {
         $messagestyle =  esc_attr($instance['wdmessagestyle']);
 
         _e('<div style="margin:20px 0; background-color:#f4f3e4; padding:10px; ">');
-        echo '<div class="widget ytbd-widget-preview" style="background-color:' . $messagebackgroundcolor .'; color:' . $messagecolor .'; padding:' . $messagepadding .'; margin:' . $messagemargin .'; ' . $messagestyle .'">メッセージはこのように表示されます。</div>';
+        echo '<div class="widget ytbd-widget-preview" style="background-color:' . $messagebackgroundcolor .'; color:' . $messagecolor .'; padding:' . $messagepadding .'; margin:' . $messagemargin .'; ' . $messagestyle .'">一度保存すると色選択が可能になります。</div>';
 ?>
         <p>
            <label for="<?php echo $this->get_field_id('wdmessagebody'); ?>">
