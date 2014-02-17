@@ -34,7 +34,6 @@ class YTBmessagewidget extends WP_Widget {
             $instance['wdmessagebody'] =  $new_instance['wdmessagebody'];
         else
             $instance['wdmessagebody'] = stripslashes( wp_filter_post_kses( addslashes($new_instance['wdmessagebody']) ) ); // wp_filter_post_kses() expects slashed
-        endif
         $instance['wdmessagecolor'] = trim($new_instance['wdmessagecolor']);
         $instance['wdmessagebackgroundcolor'] = trim($new_instance['wdmessagebackgroundcolor']);
         $instance['wdmessagepadding'] = trim($new_instance['wdmessagepadding']);
