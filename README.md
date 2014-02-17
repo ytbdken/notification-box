@@ -1,3 +1,2 @@
-#WordPress Message Box Plugin
+#WordPress Notification-Box Plugin
 
-simple text box widget
