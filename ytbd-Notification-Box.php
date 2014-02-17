@@ -46,8 +46,9 @@ class YTBmessagewidget extends WP_Widget {
         $instance['wdmessagepadding'] = trim($new_instance['wdmessagepadding']);
         $instance['wdmessagemargin'] = trim($new_instance['wdmessagemargin']);
         $instance['wdmessagestyle'] = trim($new_instance['wdmessagestyle']);
-            return $instance;
-        }
+        return $instance;
+    }
+
     public function form($instance) {
         $defaults = array(
             'wdmessagebody' => '',
