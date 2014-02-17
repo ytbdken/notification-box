@@ -13,6 +13,7 @@ class YTBmessagewidget extends WP_Widget {
     public function __construct() {
         parent::__construct(false, 'メッセージボックス');
         add_action( 'sidebar_admin_setup', array( $this, 'admin_setup' ) );
+        add_action( 'admin_print_footer_scripts', array( $this, 'admin_footer'), 100 );
     }
 
     /**
@@ -22,6 +23,20 @@ class YTBmessagewidget extends WP_Widget {
         wp_enqueue_script( 'wp-color-picker' );
         wp_enqueue_style( 'wp-color-picker' );
     }
+	
+	/**
+	 * Print scripts.
+	 */
+	function admin_footer() {
+		?><script type="text/javascript">
+ytbdNotificationWidgetFormSetup = function() {
+	jQuery('#widgets-right .ytbd-color-background').wpColorPicker();
+	jQuery('#widgets-right .ytbd-color').wpColorPicker();
+}
+jQuery(document).ready( function(){ ytbdNotificationWidgetFormSetup(); } );
+</script>
+		<?php
+	}
 
     public function widget($args, $instance) {
         extract( $args );
@@ -79,7 +94,7 @@ class YTBmessagewidget extends WP_Widget {
            <label for="<?php echo $this->get_field_id('wdmessagebackgroundcolor'); ?>">
              <?php _e('<strong>背景色</strong>'); ?>
            </label>
-           <input class="widefat ytbd-color-picker" type="text" id="<?php echo $this->get_field_id('wdmessagebackgroundcolor'); ?>" name="<?php echo $this->get_field_name('wdmessagebackgroundcolor'); ?>"  value="<?php echo ($messagebackgroundcolor); ?>" ></input>
+           <input class="widefat ytbd-color-background" type="text" id="<?php echo $this->get_field_id('wdmessagebackgroundcolor'); ?>" name="<?php echo $this->get_field_name('wdmessagebackgroundcolor'); ?>"  value="<?php echo ($messagebackgroundcolor); ?>" ></input>
            <?php _e('<span style="font-size:10px;">例：#f00 （赤い背景） black (黒い背景）</span>'); ?>
         </p>
 
@@ -87,7 +102,7 @@ class YTBmessagewidget extends WP_Widget {
            <label for="<?php echo $this->get_field_id('wdmessagecolor'); ?>">
              <?php _e('<strong">文字色</strong>'); ?>
            </label>
-           <input class="widefat ytbd-color-picker" type="text" id="<?php echo $this->get_field_id('wdmessagecolor'); ?>" name="<?php echo $this->get_field_name('wdmessagecolor'); ?>"  value="<?php echo ($messagecolor); ?>" ></input>
+           <input class="widefat ytbd-color" type="text" id="<?php echo $this->get_field_id('wdmessagecolor'); ?>" name="<?php echo $this->get_field_name('wdmessagecolor'); ?>"  value="<?php echo ($messagecolor); ?>" ></input>
             <?php _e('<span style="font-size:10px;">例：#fff （白い文字） black (黒い文字）</span>'); ?>
         </p>
 
@@ -116,18 +131,7 @@ class YTBmessagewidget extends WP_Widget {
         </p>
         <?php _e('</div>'); ?>
 <script type="text/javascript">
-jQuery(document).ready(function($){
-	$('#<?php echo $this->get_field_id('wdmessagebackgroundcolor'); ?>').wpColorPicker({
-		change: function(event, ui){
-			$('.ytbd-widget-preview').css('background-color',ui.color.toString());
-		}
-	});
-	$('#<?php echo $this->get_field_id('wdmessagecolor'); ?>').wpColorPicker({
-		change: function(event, ui){
-			$('.ytbd-widget-preview').css('color',ui.color.toString());
-		}
-	});
-});
+ytbdNotificationWidgetFormSetup();
 </script>
         <?php
     }
