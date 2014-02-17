@@ -43,12 +43,12 @@ class YTBmessagewidget extends WP_Widget {
             return $instance;
         }
     function form($instance) {
-        $messagebody =  htmlspecialchars($instance['wdmessagebody']);
-        $messagecolor =  htmlspecialchars($instance['wdmessagecolor']);
-        $messagebackgroundcolor =  htmlspecialchars($instance['wdmessagebackgroundcolor']);
-        $messagepadding =  htmlspecialchars($instance['wdmessagepadding']);
-        $messagemargin =  htmlspecialchars($instance['wdmessagemargin']);
-        $messagestyle =  htmlspecialchars($instance['wdmessagestyle']);
+        $messagebody =  esc_textarea($instance['wdmessagebody']);
+        $messagecolor =  esc_attr($instance['wdmessagecolor']);
+        $messagebackgroundcolor =  esc_attr($instance['wdmessagebackgroundcolor']);
+        $messagepadding =  esc_attr($instance['wdmessagepadding']);
+        $messagemargin =  esc_attr($instance['wdmessagemargin']);
+        $messagestyle =  esc_attr($instance['wdmessagestyle']);
         $instance = wp_parse_args( (array) $instance, $defaults ); ?>
 
         <?php _e('<div style="margin:20px 0; background-color:#f4f3e4; padding:10px; ">'); ?>
