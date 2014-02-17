@@ -10,7 +10,7 @@ License: GPL
 */
 
 class YTBmessagewidget extends WP_Widget {
-    function __construct() {
+    public function __construct() {
         parent::__construct(false, $name = 'メッセージボックス' );
         add_action( 'sidebar_admin_setup', array( $this, 'admin_setup' ) );
     }
@@ -18,12 +18,12 @@ class YTBmessagewidget extends WP_Widget {
     /**
      * Enqueue javascripts.
      */
-    function admin_setup() {
+    public function admin_setup() {
         wp_enqueue_script( 'wp-color-picker' );
         wp_enqueue_style( 'wp-color-picker' );
     }
 
-    function widget($args, $instance) {
+    public function widget($args, $instance) {
         extract( $args );
         $messagebody = apply_filters( 'widget_messagebody', $instance['wdmessagebody'] );
         $messagecolor = apply_filters( 'widget_messagecolor', $instance['wdmessagecolor'] );
@@ -34,7 +34,7 @@ class YTBmessagewidget extends WP_Widget {
         echo '<div class="widget" style="background-color:' . esc_attr($messagebackgroundcolor) .'; color:' . esc_attr($messagecolor) .'; padding:' . esc_attr($messagepadding) .'; margin:' . esc_attr($messagemargin) .'; ' . esc_attr($messagestyle) .'">'.$messagebody. '</div>';
     }
 
-    function update($new_instance, $old_instance) {
+    public function update($new_instance, $old_instance) {
         $instance = $old_instance;
         $instance = $new_instance;
         if ( current_user_can('unfiltered_html') )
@@ -48,7 +48,7 @@ class YTBmessagewidget extends WP_Widget {
         $instance['wdmessagestyle'] = trim($new_instance['wdmessagestyle']);
             return $instance;
         }
-    function form($instance) {
+    public function form($instance) {
         $defaults = array(
             'wdmessagebody' => '',
             'wdmessagecolor' => '',
