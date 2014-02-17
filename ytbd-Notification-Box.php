@@ -11,7 +11,7 @@ License: GPL
 
 class YTBmessagewidget extends WP_Widget {
     public function __construct() {
-        parent::__construct(false, $name = 'メッセージボックス' );
+        parent::__construct(false, 'メッセージボックス');
         add_action( 'sidebar_admin_setup', array( $this, 'admin_setup' ) );
     }
 
