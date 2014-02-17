@@ -8,8 +8,7 @@ Author: kenji goto
 Author URI: http://yotsuba-d.com
 License: GPL
 */
-?>
-<?php
+
 class YTBmessagewidget extends WP_Widget {
     function YTBmessagewidget() {
         parent::WP_Widget(false, $name = 'メッセージボックス' );
@@ -128,4 +127,3 @@ jQuery(document).ready(function($){
     }
 }
 add_action('widgets_init', create_function('', 'return register_widget("YTBmessagewidget");'));
-?>
