@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: ytbd Message Box
+Plugin Name: ytbd Notification Box
 Plugin URI: http:yotsuba-d.com
 Description: ウィジェットにシンプルなメッセージボックスを追加できます。
 Version: 1.0
@@ -23,7 +23,7 @@ class YTBmessagewidget extends WP_Widget {
         $messagemargin = apply_filters( 'widget_messagemargin', $instance['wdmessagemargin'] );
         $messagestyle = apply_filters( 'widget_messagestyle', $instance['wdmessagestyle'] );
         ?>
-        <?php echo '<div class="widget" style="background-color:' . $messagebackgroundcolor .'; color:' . $messagecolor .'; padding:' . $messagepadding .'; margin:' . $messagemargin .'; ' . $messagestyle .'">'.$messagebody. '</div>'; ?>
+        <?php echo '<div class="widget" style="background-color:' . esc_attr($messagebackgroundcolor) .'; color:' . esc_attr($messagecolor) .'; padding:' . esc_attr($messagepadding) .'; margin:' . esc_attr($messagemargin) .'; ' . esc_attr($messagestyle) .'">'.esc_html($messagebody). '</div>'; ?>
         <?php
     }
 
