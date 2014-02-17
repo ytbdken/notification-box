@@ -52,9 +52,9 @@ class YTBmessagewidget extends WP_Widget {
     public function form($instance) {
         $defaults = array(
             'wdmessagebody' => '',
-            'wdmessagecolor' => '',
-            'wdmessagebackgroundcolor' => '',
-            'wdmessagepadding' => '',
+            'wdmessagecolor' => '#fff',
+            'wdmessagebackgroundcolor' => '#66AD00',
+            'wdmessagepadding' => '15px',
             'wdmessagemargin' => '',
             'wdmessagestyle' => '',
         );
