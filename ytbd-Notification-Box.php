@@ -16,14 +16,14 @@ class YTBmessagewidget extends WP_Widget {
         add_action( 'sidebar_admin_setup', array( $this, 'admin_setup' ) );
     }
 
-	/**
-	 * Enqueue javascripts.
-	 */
-	function admin_setup() {
-		wp_enqueue_script( 'wp-color-picker' );
-		wp_enqueue_style( 'wp-color-picker' );
-	}
-	
+    /**
+     * Enqueue javascripts.
+     */
+    function admin_setup() {
+        wp_enqueue_script( 'wp-color-picker' );
+        wp_enqueue_style( 'wp-color-picker' );
+    }
+
     function widget($args, $instance) {
         extract( $args );
         $messagebody = apply_filters( 'widget_messagebody', $instance['wdmessagebody'] );
