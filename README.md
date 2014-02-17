@@ -1,2 +1,3 @@
-#WordPress Notification-Box Plugin
-
+#WordPress Notification-Box Plugin  
+#シンプルにメッセージを表示するウィジェット  
+メッセージを表示させたいけど、背景に色を使用したりしたい時はテキストウィジェットだと少し面倒。HTMLをなるべく書かずにちょっとしたメッセージを表示出来たら良いなという事で作ったプラグインです。
