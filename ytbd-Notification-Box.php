@@ -67,8 +67,8 @@ jQuery(document).ready( function(){ ytbdNotificationWidgetFormSetup(); } );
     public function form($instance) {
         $defaults = array(
             'wdmessagebody' => '',
-            'wdmessagecolor' => '',
-            'wdmessagebackgroundcolor' => '',
+            'wdmessagecolor' => '#333',
+            'wdmessagebackgroundcolor' => '#fff',
             'wdmessagepadding' => '',
             'wdmessagemargin' => '',
             'wdmessagestyle' => '',
@@ -81,7 +81,8 @@ jQuery(document).ready( function(){ ytbdNotificationWidgetFormSetup(); } );
         $messagemargin =  esc_attr($instance['wdmessagemargin']);
         $messagestyle =  esc_attr($instance['wdmessagestyle']);
 
-        _e('<div style="margin:20px 0; background-color:#f4f3e4; padding:10px; ">一度保存すると色選択が可能になります。');
+        _e('<div style="margin:20px 0; background-color:#f4f3e4; padding:10px; ">');
+        echo '<div class="widget ytbd-widget-preview" style="background-color:' . $messagebackgroundcolor .'; color:' . $messagecolor .'; padding:' . $messagepadding .'; margin:' . $messagemargin .'; ' . $messagestyle .'">このようにメッセージが表示されます。</div>';
 ?>
         <p>
            <label for="<?php echo $this->get_field_id('wdmessagebody'); ?>">
@@ -127,7 +128,7 @@ jQuery(document).ready( function(){ ytbdNotificationWidgetFormSetup(); } );
              <?php _e('<strong>スタイル追加</strong>'); ?>
            </label>
            <input class="widefat" type="text" id="<?php echo $this->get_field_id('wdmessagestyle'); ?>" name="<?php echo $this->get_field_name('wdmessagestyle'); ?>"  value="<?php echo ($messagestyle); ?>" ></input>        
-           <?php _e('<span style="font-size:10px;">例：border:#f00 1px dotted; （赤い点線で囲う） border-radius:10px; (10pxの角丸にする）<br />　　font-size:3em; （文字を大きくする）</span>'); ?>
+           <?php _e('<span style="font-size:10px;">例：border:#f00 1px dotted; （赤い点線で囲う） border-radius:10px; (10pxの角丸にする）　font-size:2em; （文字を大きく）</span>'); ?>
         </p>
         <?php _e('</div>'); ?>
 <script type="text/javascript">
