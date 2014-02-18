@@ -95,6 +95,7 @@ jQuery(document).ready( function(){ ytbdNotificationWidgetFormSetup(); } );
            <label for="<?php echo $this->get_field_id('wdmessagebackgroundcolor'); ?>">
              <?php _e('<strong>背景色</strong>'); ?>
            </label>
+           <input size="7" type="text" id="<?php echo $this->get_field_id('wdmessagebackgroundcolor'); ?>" name="<?php echo $this->get_field_name('wdmessagebackgroundcolor'); ?>"  value="<?php echo ($messagebackgroundcolor); ?>" ></input>
            <input class="widefat ytbd-color-background" type="text" id="<?php echo $this->get_field_id('wdmessagebackgroundcolor'); ?>" name="<?php echo $this->get_field_name('wdmessagebackgroundcolor'); ?>"  value="<?php echo ($messagebackgroundcolor); ?>" ></input>
         </p>
 
@@ -102,6 +103,7 @@ jQuery(document).ready( function(){ ytbdNotificationWidgetFormSetup(); } );
            <label for="<?php echo $this->get_field_id('wdmessagecolor'); ?>">
              <?php _e('<strong">文字色</strong>'); ?>
            </label>
+           <input size="7" type="text" id="<?php echo $this->get_field_id('wdmessagecolor'); ?>" name="<?php echo $this->get_field_name('wdmessagecolor'); ?>"  value="<?php echo ($messagecolor); ?>" ></input>
            <input class="widefat ytbd-color" type="text" id="<?php echo $this->get_field_id('wdmessagecolor'); ?>" name="<?php echo $this->get_field_name('wdmessagecolor'); ?>"  value="<?php echo ($messagecolor); ?>" ></input>
         </p>
 
