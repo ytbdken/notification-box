@@ -96,7 +96,6 @@ jQuery(document).ready( function(){ ytbdNotificationWidgetFormSetup(); } );
              <?php _e('<strong>背景色</strong>'); ?>
            </label>
            <input class="widefat ytbd-color-background" type="text" id="<?php echo $this->get_field_id('wdmessagebackgroundcolor'); ?>" name="<?php echo $this->get_field_name('wdmessagebackgroundcolor'); ?>"  value="<?php echo ($messagebackgroundcolor); ?>" ></input>
-           <?php _e('<span style="font-size:10px;">例：#f00 （赤い背景） black (黒い背景）</span>'); ?>
         </p>
 
         <p>
@@ -104,7 +103,6 @@ jQuery(document).ready( function(){ ytbdNotificationWidgetFormSetup(); } );
              <?php _e('<strong">文字色</strong>'); ?>
            </label>
            <input class="widefat ytbd-color" type="text" id="<?php echo $this->get_field_id('wdmessagecolor'); ?>" name="<?php echo $this->get_field_name('wdmessagecolor'); ?>"  value="<?php echo ($messagecolor); ?>" ></input>
-            <?php _e('<span style="font-size:10px;">例：#fff （白い文字） black (黒い文字）</span>'); ?>
         </p>
 
 
@@ -112,7 +110,7 @@ jQuery(document).ready( function(){ ytbdNotificationWidgetFormSetup(); } );
            <label for="<?php echo $this->get_field_id('wdmessagepadding'); ?>">
              <?php _e('<strong>囲いの内側の余白</strong>（padding)'); ?>
            </label>
-           <input class="widefat" type="text" id="<?php echo $this->get_field_id('wdmessagepadding'); ?>" name="<?php echo $this->get_field_name('wdmessagepadding'); ?>"  value="<?php echo ($messagepadding); ?>" </input>        
+           <input class="widefat" type="text" id="<?php echo $this->get_field_id('wdmessagepadding'); ?>" name="<?php echo $this->get_field_name('wdmessagepadding'); ?>"  value="<?php echo ($messagepadding); ?>" ></input>        
            <?php _e('<span style="font-size:10px;">例：15px （上下左右10px） 20px 0 (上下に20px　横は無し）<br />※背景色を入れた場合は内側の余白を設定しましょう。</span>'); ?>
         </p>
         <?php _e('</div><div style="margin:20px 0; padding:10px; ">'); ?>
