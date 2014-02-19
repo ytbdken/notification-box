@@ -138,3 +138,4 @@ ytbdNotificationWidgetFormSetup();
     }
 }
 add_action('widgets_init', create_function('', 'return register_widget("YTBmessagewidget");'));
+add_filter('widget_messagebody', 'do_shortcode');
